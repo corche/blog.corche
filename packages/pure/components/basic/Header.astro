@@ -68,12 +68,6 @@ import { Icon } from '../user'
 </header-component>
 
 {/* Use inline to load icon quicker firstly */}
-<script is:inline>
-  const toggleDarkModeElement = document.getElementById('toggleDarkMode')
-  if (toggleDarkModeElement) {
-    toggleDarkModeElement.dataset.theme = localStorage.getItem('theme') || 'system'
-  }
-</script>
 <script>
   import { setTheme, showToast } from '../../utils'
 

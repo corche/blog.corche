@@ -2,10 +2,10 @@ import type { CardListData, Config, IntegrationUserConfig, ThemeUserConfig } fro
 
 export const theme: ThemeUserConfig = {
   /** Title for your website. Will be used in metadata and as browser tab title. */
-  title: 'Astro Theme Pure',
+  title: '우진의 개발로그',
 
   /** Will be used in index page & copyright declaration */
-  author: 'Pure Lab',
+  author: '코체',
 
   /** Description metadata for your website. Can be used in page metadata. */
   description: 'Stay hungry, stay foolish',
@@ -14,9 +14,9 @@ export const theme: ThemeUserConfig = {
   favicon: '/favicon/favicon.ico',
 
   locale: {
-    lang: 'en-US',
-    attrs: 'en_US',
-    dateLocale: 'en-US',
+    lang: 'ko-KR',
+    attrs: 'ko_KR',
+    dateLocale: 'ko-KR',
     dateOptions: {
       day: 'numeric',
       month: 'short',
@@ -47,10 +47,7 @@ export const theme: ThemeUserConfig = {
 
   header: {
     menu: [
-      { title: 'Blog', link: '/blog' },
-      { title: 'Docs', link: '/docs/list' },
-      { title: 'Projects', link: '/projects' },
-      { title: 'Links', link: '/links' },
+      { title: 'Blog', link: '/' },
       { title: 'About', link: '/about' }
     ]
   },

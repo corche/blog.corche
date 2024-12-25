@@ -8,6 +8,7 @@
     "baseUrl": ".",
     "lib": ["es2022", "dom", "dom.iterable"],
     "paths": {
+      "@/pure/*": ["packages/pure/*"],
       "@/assets/*": ["src/assets/*"],
       "@/components/*": ["src/components/*"],
       "@/layouts/*": ["src/layouts/*"],
