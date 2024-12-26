@@ -32,9 +32,9 @@ import config from './src/site.config.ts'
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
-  site: 'https://blog.corche.me/',
+  site: 'https://blog.corche.me',
   base: '/',
-  trailingSlash: 'always',
+  trailingSlash: 'never',
 
   // Adapter
   // 1. Vercel (serverless)
