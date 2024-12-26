@@ -35,18 +35,10 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
     <div class='hero-image relative mb-6'>
       <Image
         alt={heroImage.alt || title}
-        class='cover-image relative z-10 h-auto w-full max-w-[65ch] rounded-2xl object-contain'
+        class='cover-image relative z-10 h-auto w-full rounded-2xl object-contain'
         fetchpriority='high'
         loading='eager'
         src={heroImage.src}
-      />
-      <Image
-        alt='Blur image'
-        fetchpriority='high'
-        loading='eager'
-        src={heroImage.src}
-        id='blurImage'
-        class='absolute end-0 top-4 z-0 mt-0 h-full max-w-[65ch] rounded-3xl opacity-60 blur-xl transition-opacity duration-300'
       />
     </div>
   )
@@ -65,7 +57,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
           <div class='flex items-center gap-1'>
             <span> / </span>
             <span>
-              Update
+              업데이트
               <FormattedDate
                 class='font-sans'
                 date={updatedDate}
@@ -79,7 +71,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
     {/* Times read */}
     <div class='flex items-center gap-1'>
       <Icon name='time' class='size-5' />
-      {remarkPluginFrontmatter.minutesRead}
+      {`${remarkPluginFrontmatter.minutesRead}`.replace(/[^0-9]/g, '')}분 소요
     </div>
     {
       // Language

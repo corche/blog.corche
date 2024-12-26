@@ -2,7 +2,7 @@
 
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 // Adapter
-import vercel from '@astrojs/vercel'
+// import vercel from '@astrojs/vercel'
 // Integrations
 import icon from 'astro-icon'
 import AstroPureIntegration from 'astro-pure'
@@ -32,14 +32,14 @@ import config from './src/site.config.ts'
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
-  site: 'https://astro-docs.vercel.app',
-  // base: '/docs',
-  trailingSlash: 'never',
+  site: 'https://blog.corche.me/',
+  base: '/',
+  trailingSlash: 'always',
 
   // Adapter
   // 1. Vercel (serverless)
-  adapter: vercel(),
-  output: 'server',
+  // adapter: vercel(),
+  // output: 'server',
   // 2. Vercel (static)
   // adapter: vercelStatic(),
   // 3. Local (standalone)

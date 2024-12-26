@@ -1,8 +1,9 @@
 ---
 import type { GetStaticPaths, Page } from 'astro'
 import type { CollectionEntry } from 'astro:content'
+import PostPreview from '@/pure/components/pages/PostPreview.astro'
 
-import { Paginator, PostPreview } from 'astro-pure/components/pages'
+import { Paginator } from 'astro-pure/components/pages'
 import { getBlogCollection, getUniqueTags, sortMDByDate } from 'astro-pure/server'
 import { Button } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
@@ -29,20 +30,20 @@ interface Props {
 const { page, uniqueTags, collectionsCount } = Astro.props
 
 const meta = {
-  description: 'Some posts or archieves of my blog',
+  description: '우진의 개발로그',
   title: 'Blog'
 }
 
 const paginationProps = {
   ...(page.url.prev && {
     prevUrl: {
-      text: `← Previous Posts`,
+      text: `← 이전 글`,
       url: page.url.prev
     }
   }),
   ...(page.url.next && {
     nextUrl: {
-      text: `Next Posts →`,
+      text: `다음 글 →`,
       url: page.url.next
     }
   })
@@ -53,17 +54,17 @@ const paginationProps = {
   <main class='mt-6 lg:mt-10'>
     {
       page.data.length === 0 ? (
-        <p>No posts yet.</p>
+        <p>아직 글이 없네요..</p>
       ) : (
         <div class='grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8'>
           <section aria-label='Blog posts list' class='animate' id='content'>
             {/* header */}
             <div class='mb-3 flex flex-col justify-between text-sm sm:mb-5 sm:flex-row'>
               <span class='text-muted-foreground'>
-                Page {page.currentPage} - Showing {page.data.length} of {collectionsCount} posts
+                {page.currentPage} 페이지 - {collectionsCount}개 중 {page.data.length}개 표시
               </span>
               <a aria-label='View all blog by years' href='/archives' data-astro-prefetch>
-                View all posts by years →
+                게시글 모두 보기 →
               </a>
             </div>
             {/* posts */}
@@ -82,7 +83,7 @@ const paginationProps = {
                 <svg class='me-2 size-6'>
                   <use href='/icons/ui.svg#mingcute-tag-2-line' />
                 </svg>
-                Tags
+                태그
               </h2>
               <ul class='text-bgColor flex flex-wrap gap-2'>
                 {uniqueTags.map((tag) => (
@@ -93,7 +94,7 @@ const paginationProps = {
               </ul>
               <span class='mt-4 block sm:text-end'>
                 <a aria-label='View all blog categories' href='/tags' data-astro-prefetch>
-                  View all →
+                  더보기 →
                 </a>
               </span>
             </aside>

@@ -38,7 +38,7 @@ const postDate = data.updatedDate ?? data.publishDate
       !detailed && 'sm:flex-row',
       detailed && data.heroImage && 'max-md:pt-24'
     )}
-    href={`/blog/${id}`}
+    href={`/${id}`}
     data-astro-prefetch
   >
     {
@@ -52,7 +52,7 @@ const postDate = data.updatedDate ?? data.publishDate
       )
     }
 
-    <FormattedDate class='min-w-[95px] py-1 text-xs' date={postDate} />
+    <FormattedDate class='date min-w-[95px] py-1 text-xs' date={postDate} />
 
     <Tag class='z-10 flex-grow'>
       {/* title */}
@@ -99,15 +99,8 @@ const postDate = data.updatedDate ?? data.publishDate
               {/* reading time */}
               <span class='flex items-center gap-1'>
                 <Icon name='time' class='size-4' />
-                {remarkPluginFrontmatter.minutesRead}
+                {`${remarkPluginFrontmatter.minutesRead}`.replace(/[^0-9]/g, '')}분 소요
               </span>
-              {/* language */}
-              {data.language && (
-                <span class='flex items-center gap-1'>
-                  <Icon name='earth' class='size-4' />
-                  {data.language}
-                </span>
-              )}
             </div>
           </>
         )
@@ -129,6 +122,10 @@ const postDate = data.updatedDate ?? data.publishDate
 </li>
 
 <style>
+  .date {
+    margin-right: 1rem;
+  }
+
   .post-preview {
     --preview-highlight-final: var(
       --preview-highlight,

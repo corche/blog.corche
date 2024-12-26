@@ -1,5 +1,6 @@
 ---
-import { PostPreview } from 'astro-pure/components/pages'
+import PostPreview from '@/pure/components/pages/PostPreview.astro'
+
 import { getBlogCollection, groupCollectionsByYear, sortMDByDate } from 'astro-pure/server'
 import { Button } from 'astro-pure/user'
 import PageLayout from '@/layouts/BaseLayout.astro'
@@ -11,20 +12,17 @@ const allPostsByDate = sortMDByDate(allPosts)
 const allPostsByYear = groupCollectionsByYear(allPostsByDate)
 
 const meta = {
-  description: 'A list of all the years of creating my posts',
-  title: 'Archives'
+  title: 'Archive'
 }
 ---
 
 <PageLayout {meta}>
-  <Button title='Back' href='/' style='back' />
+  <Button title='뒤로' href='/' style='back' />
 
   <main class='mt-6 lg:mt-10'>
-    <div id='content-header' class='animate'>
-      <h1 class='mb-6 text-3xl font-medium'>Archives</h1>
-    </div>
+    <div id='content-header' class='animate'></div>
 
-    {allPosts.length === 0 && <p>No posts yet.</p>}
+    {allPosts.length === 0 && <p>아직 글이 없네요..</p>}
 
     <section id='content' class='animate' aria-label='Blog post list'>
       {
@@ -36,9 +34,7 @@ const meta = {
             >
               <samp>{year}</samp>
             </h2>
-            <p class='px-5 text-muted-foreground'>
-              {posts.length} post{posts.length > 1 && 's'}
-            </p>
+            <p class='px-5 text-muted-foreground'>{posts.length}개</p>
             <ul class='flex flex-col text-start'>
               {posts.map((p) => (
                 <PostPreview post={p} class='border-0 bg-transparent py-2' />

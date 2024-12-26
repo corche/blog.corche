@@ -14,13 +14,13 @@ export const theme: ThemeUserConfig = {
   favicon: '/favicon/favicon.ico',
 
   locale: {
-    lang: 'ko-KR',
-    attrs: 'ko_KR',
-    dateLocale: 'ko-KR',
+    lang: 'ko-KR', // 한국어 언어 설정
+    attrs: 'ko_KR', // 한국 로케일 설정
+    dateLocale: 'ko-KR', // 한국 날짜 로케일 설정
     dateOptions: {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
+      day: 'numeric', // 날짜: 숫자 형식
+      month: 'long', // 월: 긴 형식 (예: 1월, 2월 등)
+      year: 'numeric' // 연도: 숫자 형식
     }
   },
 
@@ -54,22 +54,19 @@ export const theme: ThemeUserConfig = {
 
   footer: {
     // Registration information for ICP (optional)
-    registration: {
-      url: 'https://icp.gov.moe/?keyword=APTX4869',
-      text: '萌ICP备APTX4869号'
-    },
+    registration: {},
     /** Enable displaying a “Astro & Pure theme powered” link in your site’s footer. */
-    credits: true,
+    credits: false,
     social: { github: 'https://astro.build/chat' }
   },
 
   content: {
     externalLinksContent: ' ↗',
     /** Blog page size for pagination (optional) */
-    blogPageSize: 8,
+    blogPageSize: 7,
     externalLinkArrow: true, // show external link arrow
     // Currently support weibo, x, bluesky
-    share: ['weibo', 'x', 'bluesky']
+    share: ['x']
   }
 }
 
