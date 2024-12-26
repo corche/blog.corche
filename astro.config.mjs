@@ -29,10 +29,13 @@ import {
 } from './src/plugins/shikiTransformers.ts'
 import config from './src/site.config.ts'
 
+import cloudflare from '@astrojs/cloudflare';
+
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
   site: 'https://blog.corche.me',
+
   base: '/',
   trailingSlash: 'never',
 
@@ -65,14 +68,17 @@ export default defineConfig({
     // }),
     // pagefindConfig()
   ],
+
   // root: './my-project-directory',
 
   // Prefetch Options
   prefetch: true,
+
   // Server Options
   server: {
     host: true
   },
+
   // Markdown Options
   markdown: {
     remarkPlugins: [remarkReadingTime, remarkMath, remarkArxivCards],
@@ -104,9 +110,7 @@ export default defineConfig({
       ]
     }
   },
-  experimental: {
-    svg: true
-  }
+
   // vite: {
   //   plugins: [
   //     visualizer({
@@ -115,4 +119,9 @@ export default defineConfig({
   //     })
   //   ]
   // }
+  experimental: {
+    svg: true
+  },
+
+  adapter: cloudflare()
 })
