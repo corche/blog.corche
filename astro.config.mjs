@@ -1,5 +1,6 @@
 // @ts-check
 
+import cloudflare from '@astrojs/cloudflare'
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 // Adapter
 // import vercel from '@astrojs/vercel'
@@ -29,8 +30,6 @@ import {
 } from './src/plugins/shikiTransformers.ts'
 import config from './src/site.config.ts'
 
-import cloudflare from '@astrojs/cloudflare';
-
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
@@ -48,6 +47,14 @@ export default defineConfig({
   // 3. Local (standalone)
   // adapter: node({ mode: 'standalone' }),
   // ---
+  adapter: cloudflare({
+    routes: {
+      extend: {
+        include: [{ pattern: '/*' }], // 모든 경로를 포함
+        exclude: [] // 제외할 경로가 없으므로 빈 배열
+      }
+    }
+  }),
 
   image: {
     service: {
