@@ -3,7 +3,7 @@
     module.exports = factory()
     module.exports['default'] = factory()
   } else if (typeof define === 'function' && define.amd) {
-  /* istanbul ignore next */
+    /* istanbul ignore next */
     define(factory)
   } else {
     root[name] = factory()

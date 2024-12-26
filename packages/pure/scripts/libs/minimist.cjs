@@ -68,7 +68,6 @@ module.exports = function (args, opts) {
       )
     })
   })
-
   ;[]
     .concat(opts.string)
     .filter(Boolean)
@@ -145,7 +144,6 @@ module.exports = function (args, opts) {
 
     var value = !flags.strings[key] && isNumber(val) ? Number(val) : val
     setKey(argv, key.split('.'), value)
-
     ;(aliases[key] || []).forEach(function (x) {
       setKey(argv, x.split('.'), value)
     })
@@ -263,7 +261,6 @@ module.exports = function (args, opts) {
   Object.keys(defaults).forEach(function (k) {
     if (!hasKey(argv, k.split('.'))) {
       setKey(argv, k.split('.'), defaults[k])
-
       ;(aliases[k] || []).forEach(function (x) {
         setKey(argv, x.split('.'), defaults[k])
       })
