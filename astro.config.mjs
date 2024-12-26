@@ -47,14 +47,6 @@ export default defineConfig({
   // 3. Local (standalone)
   // adapter: node({ mode: 'standalone' }),
   // ---
-  adapter: cloudflare({
-    routes: {
-      extend: {
-        include: [{ pattern: '/*' }], // 모든 경로를 포함
-        exclude: [] // 제외할 경로가 없으므로 빈 배열
-      }
-    }
-  }),
 
   image: {
     service: {
