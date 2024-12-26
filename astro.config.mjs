@@ -34,7 +34,6 @@ import config from './src/site.config.ts'
 export default defineConfig({
   // Top-Level Options
   site: 'https://blog.corche.me',
-
   base: '/',
   trailingSlash: 'never',
 
