@@ -1,8 +1,21 @@
 ---
 import { render, type CollectionEntry } from 'astro:content'
 
+import { GithubCard, LinkPreview, QRCode } from 'astro-pure/advanced'
 import { getBlogCollection, sortMDByDate } from 'astro-pure/server'
+import { Aside, MdxRepl, Steps, TabItem, Tabs } from 'astro-pure/user'
 import PostLayout from '@/layouts/BlogPost.astro'
+
+const mdxComponents = {
+  GithubCard,
+  LinkPreview,
+  QRCode,
+  Aside,
+  MdxRepl,
+  Steps,
+  TabItem,
+  Tabs
+}
 
 export const prerender = true
 
@@ -24,5 +37,5 @@ const { Content, headings, remarkPluginFrontmatter } = await render(post)
 ---
 
 <PostLayout {post} {posts} {headings} {remarkPluginFrontmatter}>
-  <Content />
+  <Content components={mdxComponents} />
 </PostLayout>

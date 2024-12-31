@@ -31,7 +31,7 @@
     "@waline/client": "^3.4.2",
     "astro": "^5.1.1",
     "astro-icon": "^1.1.4",
-    "astro-pure": "1.2.2",
+    "astro-pure": "1.2.3",
     "hast-util-select": "^6.0.3",
     "katex": "^0.16.18",
     "node-html-parser": "^6.1.13",
