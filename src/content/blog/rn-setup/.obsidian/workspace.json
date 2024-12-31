@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "fa728e30248a6b3d",
+        "id": "0476060fd511b849",
         "type": "tabs",
         "children": [
           {
-            "id": "e846a688ec276118",
+            "id": "53a518f6d8e59d91",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -163,20 +163,20 @@
       "edit-mdx:New .mdx file": false
     }
   },
-  "active": "e846a688ec276118",
+  "active": "53a518f6d8e59d91",
   "lastOpenFiles": [
-    "8.png",
-    "7.png",
-    "55.png",
+    "virtual_6.png",
+    "virtual_5.png",
+    "virtual_4.png",
+    "virtual_3.png",
+    "virtual_2.png",
+    "virtual_1.png",
+    "emulator_1.png",
+    "androidstudio_4.png",
+    "androidStudio_3.png",
+    "androidStudio_2.png",
+    "androidStudio_1.png",
     "index.mdx",
-    "6.png",
-    "Pasted.md",
-    "Pasted image 20241230140757.png",
-    "RN.SETUP.png",
-    "5.png",
-    "4.png",
-    "3.png",
-    "2.png",
-    "1.png"
+    "Pasted.md"
   ]
 }
