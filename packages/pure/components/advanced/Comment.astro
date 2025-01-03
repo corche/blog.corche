@@ -1,19 +1,18 @@
-<div id='utterances-container'></div>
+<div class='giscus'></div>
 
-<script>
-  const script = document.createElement('script')
-  const container = document.querySelector('#utterances-container')
-
-  Object.entries({
-    src: 'https://utteranc.es/client.js',
-    repo: 'corche/blog.corche',
-    'issue-term': 'pathname',
-    label: '✨💬✨',
-    theme: 'github-dark',
-    crossorigin: 'anonymous'
-  }).forEach(([key, value]) => {
-    script.setAttribute(key, value)
-  })
-
-  container?.appendChild(script)
-</script>
+<script
+  src='https://giscus.app/client.js'
+  data-repo='corche/blog.corche'
+  data-repo-id='R_kgDONfG7Mw'
+  data-category='General'
+  data-category-id='DIC_kwDONfG7M84ClssI'
+  data-mapping='url'
+  data-strict='1'
+  data-reactions-enabled='1'
+  data-emit-metadata='0'
+  data-input-position='bottom'
+  data-theme='dark'
+  data-lang='ko'
+  data-loading='lazy'
+  crossorigin='anonymous'
+  async></script>
