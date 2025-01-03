@@ -66,7 +66,7 @@ export const theme: ThemeUserConfig = {
     blogPageSize: 7,
     externalLinkArrow: true, // show external link arrow
     // Currently support weibo, x, bluesky
-    share: ['x']
+    share: ['x', 'bluesky']
   }
 }
 
