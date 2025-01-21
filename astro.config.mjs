@@ -109,14 +109,12 @@ export default defineConfig({
     }
   },
 
-  // vite: {
-  //   plugins: [
-  //     visualizer({
-  //       emitFile: true,
-  //       filename: 'stats.html'
-  //     })
-  //   ]
-  // }
+  vite: {
+    ssr: {
+      noExternal: ['fs', 'path'] // Node.js 내장 모듈 허용
+    }
+  },
+
   experimental: {
     svg: true
   },

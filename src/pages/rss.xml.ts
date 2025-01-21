@@ -58,24 +58,55 @@ const GET = async (context: AstroGlobal) => {
   const siteUrl = context.site ?? new URL(import.meta.env.SITE)
 
   return rss({
-    // Basic configs
+    // 기본 설정
     trailingSlash: false,
     xmlns: { h: 'http://www.w3.org/TR/html4/' },
     stylesheet: '/scripts/pretty-feed-v3.xsl',
 
-    // Contents
+    // 콘텐츠 설정
     title: config.title,
     description: config.description,
     site: import.meta.env.SITE,
     items: await Promise.all(
-      allPostsByDate.map(async (post) => ({
-        pubDate: post.data.publishDate,
-        link: `/blog/${post.id}`,
-        customData: `<h:img src="${typeof post.data.heroImage?.src === 'string' ? post.data.heroImage?.src : post.data.heroImage?.src.src}" />
-          <enclosure url="${typeof post.data.heroImage?.src === 'string' ? post.data.heroImage?.src : post.data.heroImage?.src.src}" />`,
-        content: await renderContent(post, siteUrl),
-        ...post.data
-      }))
+      allPostsByDate.map(async (post) => {
+        const heroImage = post.data.heroImage
+        let enclosureUrl = ''
+        let enclosureType = ''
+        let enclosureLength = 0
+
+        if (heroImage) {
+          const imageSrc = typeof heroImage.src === 'string' ? heroImage.src : heroImage.src.src
+          enclosureUrl = `${siteUrl}${imageSrc.replace(/^\//, '')}`
+
+          // MIME 타입 결정
+          const fileExtension = imageSrc.split('.').pop()?.toLowerCase()
+          const mimeTypes: Record<string, string> = {
+            jpg: 'image/jpeg',
+            jpeg: 'image/jpeg',
+            png: 'image/png',
+            gif: 'image/gif',
+            webp: 'image/webp'
+          }
+          enclosureType =
+            mimeTypes[
+              fileExtension && mimeTypes[fileExtension]
+                ? mimeTypes[fileExtension]
+                : 'application/octet-stream'
+            ]
+
+          // 파일 크기를 제거하거나 기본값 사용
+          enclosureLength = 0 // fs 의존성을 없애기 위해 기본값 사용
+        }
+
+        return {
+          pubDate: post.data.publishDate,
+          link: `/blog/${post.id}`,
+          customData: `<h:img src="${enclosureUrl}" />
+            <enclosure url="${enclosureUrl}" type="${enclosureType}" length="${enclosureLength}" />`,
+          content: await renderContent(post, siteUrl),
+          ...post.data
+        }
+      })
     )
   })
 }
