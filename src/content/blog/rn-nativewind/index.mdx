@@ -1,0 +1,201 @@
+---
+title: '[ReactNative] ReactNative에서 TailWind 사용하기'
+description: 그저 짱짱인 TailWind 를 어떻게 하면 reactnative 에서도 쓸 수 있을까?
+publishDate: 2025-03-12
+tags:
+  - ReactNative
+  - TailWind
+heroImage:
+  src: ./hero.png
+  color: '#29C3C1'
+---
+
+TailWind 를 맛본지 단 4개월(맞나) 아무튼 이쯤부터 TailWind 와 사랑에 빠졌습니다.
+
+사람들이 TailWind 쓰라고 그렇게 말할땐 보기도 이상하고 별로인거 같아서 쓰기 싫었는데, 잘못된 선택이었네요. (빨리좀 써볼걸)
+
+![ㅎ..](meme_0.png)
+
+아무튼 리액트 네이티브로 개발을 하던 중 TailWind를 어떻게 해야 ReactNative 에서 쓸 수 있는지 궁금증이 생겨 찾아보니
+
+상당히 다양한 패키지들이 있던데<br />
+그 중 NativeWind 가 약빨(?)을 잘 받는다고 하길래 써보기로 했습니다.
+
+## 그게 뭔데 씹덕아
+
+TailWind 는 css 코드를 직접 작성하는 대신, 미리 짜여져 있는 css 를 class(className)으로 가져와서 쓰는건데,
+
+원래라면 개별 css 파일이 필요하겠지만, TailWind 는 한줄에 다 때려박기 때문에 개별 css 파일이 필요가 없습니다! 그래서 간단하다고 그렇게 난리를 칩니다.
+
+그리고 그걸 리네에 같다 붙힌게 바로 이 NativeWind 가 되겠네요.
+
+## 그래서 어떻게 쓰는데
+
+사용법은 간단한데, 그냥 우리가 원래 className 쓰는 부분에다가 NativeWind 가 준비한 className 을 작성만 해주면 끝입니다.
+
+..<br />
+진짜 다에요!
+<br />
+
+원래라면
+
+```tsx
+<View style={styles.sectionContainer}>
+  <Text style={styles.sectionDescription}>TailWind 짱짱</Text>
+</View>
+```
+
+```tsx
+const styles = StyleSheet.create({
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400'
+  }
+})
+```
+
+이렇게 길게 귀찮게 써야 하지만, <br />
+NativeWind 는
+
+```tsx
+<View className='mt-8 px-6'>
+  <Text className='mt-2 text-lg font-normal'>TailWind 짱짱</Text>
+</View>
+```
+
+이만큼 줄어들게 됩니다.
+
+## 설치방법
+
+설치도 우리가 전자레인지에 만두 돌리는것보다 간편한데,
+
+1. 아래의 명령어 입력
+
+```bash
+npm install nativewind TailWindcss@^3.4.17 react-native-reanimated@3.16.2 react-native-safe-area-context
+```
+
+2. 프로젝트 폴더에 `TailWind.config.js` 파일을 하나 만들어주고 다음과 같이 입력.
+
+<MdxRepl width='100%'>
+<p>TailWind.config.js</p>
+<Fragment slot='desc'>
+  ```js
+/** @type {import('TailWindcss').Config} */
+module.exports = {
+// NOTE: Update this to include the paths to all of your component files.
+    content: ["./app/**/*.{js,jsx,ts,tsx}"],
+    presets: [require("nativewind/preset")],
+    theme: {
+        extend: {},
+    },
+    plugins: [],
+}
+  ```
+</Fragment>
+</MdxRepl>
+
+3. babel.config.js 에 `"nativewind/babel",` 을 추가.
+
+<MdxRepl width='100%'>
+<p>babel.config.js</p>
+<Fragment slot='desc'>
+  ```js
+module.exports = {
+    presets: [... ,
+        "nativewind/babel", // [!code ++]
+        ...
+    ],
+};
+````
+</Fragment>
+</MdxRepl>
+
+6. 프로젝트 폴더에 `global.css` 를 생성하고 아래와 같이 작성.
+
+<MdxRepl width='100%'>
+<p>global.css</p>
+<Fragment slot='desc'>
+```css
+@TailWind base;
+@TailWind components;
+@TailWind utilities;
+````
+
+</Fragment>
+</MdxRepl>
+
+5. metro.config.js 을 수정.
+
+<MdxRepl width='100%'>
+<p>metro.config.js</p>
+<Fragment slot='desc'>
+  ```js
+const {getDefaultConfig} = require('@react-native/metro-config');
+const { withNativeWind } = require('nativewind/metro'); // [!code ++]
+
+/**
+- Metro configuration
+- https://reactnative.dev/docs/metro
+-
+- @type {import('@react-native/metro-config').MetroConfig}
+  */
+  const config = getDefaultConfig(__dirname); // [!code ++]
+
+module.exports = withNativeWind(config, { input: './global.css' }) // [!code ++]
+
+```
+</Fragment>
+</MdxRepl>
+
+6. `App.tsx` 에 `import "./global.css"` 를 추가.
+<Aside>상황에 따라 .tsx 가 아닌 .ts 또는 .js 일 수도 있으니까, 잘 확인해서 App 이름의 파일을 수정하세요!</Aside>
+<MdxRepl width='100%'>
+<p>App.tsx</p>
+<Fragment slot='desc'>
+  ```tsx
+import "./global.css" // [!code ++]
+...
+
+```
+</Fragment>
+</MdxRepl>
+
+그리고 이제 쌈@뽕한 테일윈드 문법을 조져볼 수 있습니다.
+
+간단하죠? (만두 돌리는것보다 빨리 끝남 진짜로)
+
+### TypeScript 사용한다면?
+일단 저 같은 경우는 tsx 파일이기 때문에 TypeScript 설정을 해야합니다.
+
+설정을 안하시면 코딩 할때마다 className 에 빨간불이 들어오는 불상사를 겪게 되실 거에요.. (빨강지옥)
+
+프로젝트 폴더에 `nativewind.d.ts` 파일을 만들어주고 다음과 같이 입력 해주시면 됩니다.
+
+```ts
+/// <reference types="nativewind/types" />
+```
+
+## 단점
+
+NativeWind 의 단점이 있습니다.
+
+타사 라이브러리와의 완벽한 호환은 안될 수 있다는건데,
+
+예를 들자면 reanimated 같은 경우에는 리네의 순정 스타일링 코드를 사용해야 한다던지요.
+
+그것빼곤 TailWind 의 장단점과 동일합니다.
+
+
+## 마무리
+
+아무튼 TailWind 중독자의 NativeWind 적용법을 알아보았습니다.
+
+그러니까 님들도 당장 리네에서 NativeWind 를 쓰십시오.
+
+![중독입니다.](./meme_1.png)
