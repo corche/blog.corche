@@ -70,10 +70,6 @@ NativeWind 는
 import React from 'react';
 
 import { Text, View } from 'react-native';
-import { styled } from 'nativewind';
-
-const StyledView = styled(View)
-const StyledText = styled(Text)
 
 <View className='mt-8 px-6'>
   <Text className='mt-2 text-lg font-normal'>TailWind 짱짱</Text>
@@ -92,15 +88,14 @@ const StyledText = styled(Text)
 npm install nativewind tailwindcss@^3.4.17 react-native-reanimated@3.16.2 react-native-safe-area-context
 ```
 
-2. 프로젝트 폴더에 `TailWind.config.js` 파일을 하나 만들어주고 다음과 같이 입력.
-
+2. 프로젝트 폴더에 `tailwind.config.js` 파일을 하나 만들어주고 다음과 같이 입력.
+<Aside>app 폴더가 아닌 src폴더에 코드가 담겨있다면 app 대신 src 로 작성해주세요!</Aside>
 <MdxRepl width='100%'>
-<p>TailWind.config.js</p>
+<p>tailwind.config.js</p>
 <Fragment slot='desc'>
   ```js
 /** @type {import('TailWindcss').Config} */
 module.exports = {
-// NOTE: Update this to include the paths to all of your component files.
     content: ["./app/**/*.{js,jsx,ts,tsx}"],
     presets: [require("nativewind/preset")],
     theme: {
@@ -119,11 +114,9 @@ module.exports = {
 <Fragment slot='desc'>
   ```js
 module.exports = {
-    presets: [... ,
-        "nativewind/babel", // [!code ++]
-        ...
-    ],
+  presets: ['module:@react-native/babel-preset', 'nativewind/babel'],
 };
+
 ````
 </Fragment>
 </MdxRepl>
@@ -142,25 +135,20 @@ module.exports = {
 </Fragment>
 </MdxRepl>
 
-5. metro.config.js 을 수정.
+5. metro.config.js 을 다음과 같이 수정.
 
 <MdxRepl width='100%'>
 <p>metro.config.js</p>
 <Fragment slot='desc'>
   ```js
-const {getDefaultConfig} = require('@react-native/metro-config');
-const { withNativeWind } = require('nativewind/metro'); // [!code ++]
+const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const {withNativeWind} = require('nativewind/metro');
 
-/\*\*
+const config = mergeConfig(getDefaultConfig(__dirname), {
+  /* your config */
+});
 
-- Metro configuration
-- https://reactnative.dev/docs/metro
--
-- @type {import('@react-native/metro-config').MetroConfig}
-  \*/
-  const config = getDefaultConfig(\_\_dirname); // [!code ++]
-
-module.exports = withNativeWind(config, { input: './global.css' }) // [!code ++]
+module.exports = withNativeWind(config, {input: './global.css'});
 
 ````
 </Fragment>
