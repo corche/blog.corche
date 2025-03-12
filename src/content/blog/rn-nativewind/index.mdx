@@ -41,7 +41,10 @@ TailWind 는 css 코드를 직접 작성하는 대신, 미리 짜여져 있는 c
 원래라면
 
 ```tsx
-<View style={styles.sectionContainer}>
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+
+;<View style={styles.sectionContainer}>
   <Text style={styles.sectionDescription}>TailWind 짱짱</Text>
 </View>
 ```
@@ -64,6 +67,14 @@ const styles = StyleSheet.create({
 NativeWind 는
 
 ```tsx
+import React from 'react';
+
+import { Text, View } from 'react-native';
+import { styled } from 'nativewind';
+
+const StyledView = styled(View)
+const StyledText = styled(Text)
+
 <View className='mt-8 px-6'>
   <Text className='mt-2 text-lg font-normal'>TailWind 짱짱</Text>
 </View>
