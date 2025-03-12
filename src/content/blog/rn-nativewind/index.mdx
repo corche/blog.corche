@@ -35,6 +35,7 @@ TailWind 는 css 코드를 직접 작성하는 대신, 미리 짜여져 있는 c
 
 ..<br />
 진짜 다에요!
+
 <br />
 
 원래라면
@@ -77,7 +78,7 @@ NativeWind 는
 1. 아래의 명령어 입력
 
 ```bash
-npm install nativewind TailWindcss@^3.4.17 react-native-reanimated@3.16.2 react-native-safe-area-context
+npm install nativewind tailwindcss@^3.4.17 react-native-reanimated@3.16.2 react-native-safe-area-context
 ```
 
 2. 프로젝트 폴더에 `TailWind.config.js` 파일을 하나 만들어주고 다음과 같이 입력.
@@ -139,17 +140,18 @@ module.exports = {
 const {getDefaultConfig} = require('@react-native/metro-config');
 const { withNativeWind } = require('nativewind/metro'); // [!code ++]
 
-/**
+/\*\*
+
 - Metro configuration
 - https://reactnative.dev/docs/metro
 -
 - @type {import('@react-native/metro-config').MetroConfig}
-  */
-  const config = getDefaultConfig(__dirname); // [!code ++]
+  \*/
+  const config = getDefaultConfig(\_\_dirname); // [!code ++]
 
 module.exports = withNativeWind(config, { input: './global.css' }) // [!code ++]
 
-```
+````
 </Fragment>
 </MdxRepl>
 
@@ -162,7 +164,8 @@ module.exports = withNativeWind(config, { input: './global.css' }) // [!code ++]
 import "./global.css" // [!code ++]
 ...
 
-```
+````
+
 </Fragment>
 </MdxRepl>
 
@@ -171,6 +174,7 @@ import "./global.css" // [!code ++]
 간단하죠? (만두 돌리는것보다 빨리 끝남 진짜로)
 
 ### TypeScript 사용한다면?
+
 일단 저 같은 경우는 tsx 파일이기 때문에 TypeScript 설정을 해야합니다.
 
 설정을 안하시면 코딩 할때마다 className 에 빨간불이 들어오는 불상사를 겪게 되실 거에요.. (빨강지옥)
@@ -190,7 +194,6 @@ NativeWind 의 단점이 있습니다.
 예를 들자면 reanimated 같은 경우에는 리네의 순정 스타일링 코드를 사용해야 한다던지요.
 
 그것빼곤 TailWind 의 장단점과 동일합니다.
-
 
 ## 마무리
 
